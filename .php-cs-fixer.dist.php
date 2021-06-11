@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<'EOF'
-This file is part of AmeliePortfolio.
+This file is part of Grandpere's project.
 (c) Lorenzo Marozzo <lorenzo.marozzo@gmail.com>
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
@@ -19,7 +19,8 @@ $finder = PhpCsFixer\Finder::create()
     ])
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+$config
     ->setRiskyAllowed(true)
     ->setRules([
         '@Symfony' => true,
@@ -27,3 +28,5 @@ return PhpCsFixer\Config::create()
     ])
     ->setFinder($finder)
 ;
+
+return $config;
