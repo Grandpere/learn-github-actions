@@ -43,6 +43,12 @@ jobs:
 
       - name: Psalm security
         run: psalm --config=psalm.xml --output-format=github --taint-analysis
+
+      - name: Twig templates linter
+        run: 'php bin/console lint:twig --show-deprecations templates'
+
+      - name: YAML config linter 
+        run: 'php bin/console lint:yaml --parse-tags config'
       
       - name: Validate composer files
         run: composer validate

@@ -1,0 +1,29 @@
+name: Code Standards check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  analysis:
+    name: PHP Code static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: PHPStan
+        runs-on: ubuntu-latest
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: PHPStan
+        uses: docker://oskarstark/phpstan-ga
+        with:
+          args: analyze src/ --level=5
+
+      - name: Psalm Security Scan
+        runs-on: ubuntu-latest
+        uses: docker://vimeo/psalm-github-actions
+        with:
+          security_analysis: true
