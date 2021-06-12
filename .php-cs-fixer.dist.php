@@ -1,10 +1,13 @@
 <?php
 
+/*
+ * This file is part of Grandpere's project.
+ * (c) Lorenzo Marozzo <lorenzo.marozzo@gmail.com>
+ */
+
 $header = <<<'EOF'
 This file is part of Grandpere's project.
 (c) Lorenzo Marozzo <lorenzo.marozzo@gmail.com>
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
 EOF;
 
 $finder = PhpCsFixer\Finder::create()
