@@ -1,4 +1,4 @@
-name: New code Standards check
+name: New Code Standards check
 
 on:
   push:
@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      - name: Install phpunit
-        run: bin/phpunit --version
+      # - name: Install phpunit
+      #   run: bin/phpunit --version
 
       - name: PHPStan
         run: phpstan analyse -c phpstan.neon.dist --error-format=github

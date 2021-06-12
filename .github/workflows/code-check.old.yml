@@ -8,19 +8,19 @@ on:
 
 jobs:
   analysis:
-    name: PHP Code static analysis 2
+    name: PHP Code static analysis
     runs-on: ubuntu-latest
     steps:
       - name: PHPStan
         runs-on: ubuntu-latest
-        steps:
-          - name: Checkout code
-            uses: actions/checkout@v2
 
-          - name: PHPStan
-            uses: docker://oskarstark/phpstan-ga
-            with:
-              args: analyze src/ --level=5
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: PHPStan
+        uses: docker://oskarstark/phpstan-ga
+        with:
+          args: analyze src/ --level=5
 
       - psalm:
         name: Psalm Security Scan
