@@ -1,0 +1,51 @@
+name: Code and vulnerabilities check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  
+jobs:
+  cs:
+    name: PHP CS Fixer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run PHP CS Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga:3.0.0
+        with:
+          args: --config=.php-cs-fixer.dist.php --diff --dry-run
+
+  analysis:
+    name: PHP Code static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer, phpstan, psalm, symfony
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: PHPStan
+        run: phpstan analyse -c phpstan.neon.dist --error-format=github
+
+      - name: Psalm
+        run: psalm --config=psalm.xml --output-format=github
+
+      - name: Psalm security
+        run: psalm --config=psalm.xml --output-format=github --taint-analysis
+
+      - name: Install dependencies
+        run: composer install
+      
+      - name: Validate composer files
+        run: composer validate
+
+      - name: Check vendors security vulnerabilities
+        run: symfony check:security
