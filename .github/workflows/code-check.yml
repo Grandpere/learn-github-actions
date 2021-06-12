@@ -32,6 +32,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: composer install
+
       - name: PHPStan
         run: phpstan analyse -c phpstan.neon.dist --error-format=github
 
@@ -40,9 +43,6 @@ jobs:
 
       - name: Psalm security
         run: psalm --config=psalm.xml --output-format=github --taint-analysis
-
-      - name: Install dependencies
-        run: composer install
       
       - name: Validate composer files
         run: composer validate
