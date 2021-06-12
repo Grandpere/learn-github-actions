@@ -50,7 +50,7 @@ jobs:
       - name: Check vendors security vulnerabilities
         run: symfony check:security
 
-  analysis2:
+  analysis-bis:
     name: PHP Code static analysis 2
     runs-on: ubuntu-latest
     steps:
