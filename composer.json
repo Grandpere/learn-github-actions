@@ -1,6 +1,8 @@
 {
     "type": "project",
     "license": "proprietary",
+    "name": "grandpere/learn-github-actions",
+    "description": "learn github actions",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
