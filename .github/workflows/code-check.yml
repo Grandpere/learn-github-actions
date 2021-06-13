@@ -36,7 +36,7 @@ jobs:
         run: composer install
 
       - name: Install phpunit
-        run: bin/phpunit --version
+        run: php bin/phpunit --version
 
       - name: PHPStan
         run: phpstan analyse -c phpstan.neon.dist --error-format=github
